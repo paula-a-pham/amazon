@@ -211,7 +211,6 @@ NODE_ENV=development
 
 - Follow RESTful conventions, prefix all routes with `/api/v1/`
 - See `docs/api-routes.md` for the full route reference
-- **Always update `docs/api-routes.md`** whenever creating, changing, or removing API endpoints
 
 ## Important Rules for AI Assistant
 
@@ -221,6 +220,7 @@ NODE_ENV=development
 - **Database actions**: All database-related actions require explicit user approval first (migrations, schema changes, seeding, resetting, dropping tables, modifying data)
 - **Git actions**: All git operations require explicit user approval first (commits, pushes, branch creation/deletion, merges, rebases, stashing)
 - **CLAUDE.md updates**: Keep CLAUDE.md in sync with the project. Proactively suggest updates whenever tech stack, project structure, conventions, workflows, or rules change. Also flag any outdated or incorrect information. Never modify without explicit user approval first.
+- **Docs updates**: Keep `docs/api-routes.md` in sync with the API. Proactively suggest updates whenever API endpoints are created, changed, or removed. Also flag any outdated or incorrect information. Never modify without explicit user approval first.
 
 ### Communication
 
