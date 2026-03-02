@@ -203,6 +203,7 @@ NODE_ENV=development
   - `test: add order service unit tests`
   - `chore: update dependencies`
   - `docs: add search endpoint to api-routes`
+- **Commit splitting**: Split changes into multiple logical commits when appropriate (e.g., separate commits for schema changes, business logic, and UI work)
 - **PR process**: One feature/fix per PR, squash merge into `main`
 - **Base branch**: `main` is the default branch — all PRs target `main`
 
