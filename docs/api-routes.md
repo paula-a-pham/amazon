@@ -2,6 +2,15 @@
 
 All routes are prefixed with `/api/v1/`.
 
+## Health — `/api/v1/health`
+
+### GET /health
+
+Check if the server is running.
+
+- **Auth:** No
+- **Success:** `200` — `{ success: true, data: { status: "ok" } }`
+
 ## Auth — `/api/v1/auth`
 
 ### POST /register

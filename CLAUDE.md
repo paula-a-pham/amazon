@@ -220,7 +220,7 @@ NODE_ENV=development
 - **Deletions**: Always ask the user for confirmation before deleting any file, folder, or code block
 - **Database actions**: All database-related actions require explicit user approval first (migrations, schema changes, seeding, resetting, dropping tables, modifying data)
 - **Git actions**: All git operations require explicit user approval first (commits, pushes, branch creation/deletion, merges, rebases, stashing)
-- **CLAUDE.md updates**: Keep CLAUDE.md up to date whenever tech decisions, conventions, or rules change — but never modify it without explicit user approval first
+- **CLAUDE.md updates**: Keep CLAUDE.md in sync with the project. Proactively suggest updates whenever tech stack, project structure, conventions, workflows, or rules change. Also flag any outdated or incorrect information. Never modify without explicit user approval first.
 
 ### Communication
 
