@@ -18,31 +18,37 @@ Check if the server is running.
 Create a new user account.
 
 - **Auth:** No
-- **Body:** `{ name, email, password }`
-- **Success:** `201` — user + access token
-- **Errors:** `400` validation, `409` email taken
+- **Body:** `{ name: string, email: string, password: string }`
+- **Success:** `201` — `{ success: true, data: { user: User, accessToken: string } }` + `Set-Cookie: refresh_token` (httpOnly)
+- **Errors:**
+  - `400` — validation error
+  - `409` — email already taken
 
 ### POST /login
 
 Sign in with email and password.
 
 - **Auth:** No
-- **Body:** `{ email, password }`
-- **Success:** `200` — user + access token
-- **Errors:** `400` validation, `401` invalid credentials
+- **Body:** `{ email: string, password: string }`
+- **Success:** `200` — `{ success: true, data: { user: User, accessToken: string } }` + `Set-Cookie: refresh_token` (httpOnly)
+- **Errors:**
+  - `400` — validation error
+  - `401` — invalid credentials
 
 ### POST /refresh
 
-Refresh the access token.
+Refresh the access token using the refresh cookie. Returns user data along with the new access token so the client can restore full auth state.
 
 - **Auth:** No (refresh token via httpOnly cookie)
-- **Success:** `200` — new access token (rotates refresh cookie)
-- **Errors:** `401` invalid/expired refresh token
+- **Success:** `200` — `{ success: true, data: { user: User, accessToken: string } }` + rotated `Set-Cookie: refresh_token`
+- **Errors:**
+  - `401` — missing, invalid, or expired refresh token
 
 ### POST /logout
 
-Sign out and clear refresh token.
+Sign out, revoke all refresh tokens for the user, and clear the refresh cookie.
 
-- **Auth:** Yes
-- **Success:** `200`
-- **Errors:** `401` not authenticated
+- **Auth:** Yes (Bearer access token)
+- **Success:** `200` — `{ success: true, data: { message: "Logged out successfully" } }` + cleared refresh cookie
+- **Errors:**
+  - `401` — not authenticated

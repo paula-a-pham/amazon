@@ -31,7 +31,8 @@ amazon/
 ├── .env.example
 ├── .gitignore
 ├── docs/
-│   └── api-routes.md         # Full API route reference
+│   ├── api-routes.md         # Full API route reference
+│   └── db-schema.md          # Database schema reference
 ├── packages/
 │   └── shared/               # Shared types, constants, validation schemas
 │       ├── src/
@@ -221,6 +222,7 @@ NODE_ENV=development
 - **Git actions**: All git operations require explicit user approval first (commits, pushes, branch creation/deletion, merges, rebases, stashing)
 - **CLAUDE.md updates**: Keep CLAUDE.md in sync with the project. Proactively suggest updates whenever tech stack, project structure, conventions, workflows, or rules change. Also flag any outdated or incorrect information. Never modify without explicit user approval first.
 - **Docs updates**: Keep `docs/api-routes.md` in sync with the API. Proactively suggest updates whenever API endpoints are created, changed, or removed. Also flag any outdated or incorrect information. Never modify without explicit user approval first.
+- **Schema docs**: Keep `docs/db-schema.md` in sync with the Prisma schema. Proactively suggest updates whenever models, enums, or relations are added, changed, or removed. Also flag any outdated or incorrect information. Never modify without explicit user approval first.
 
 ### Communication
 
