@@ -1,1 +1,22 @@
 @import 'tailwindcss';
+
+@layer base {
+  a, button, [role="button"], [type="submit"], [type="button"], [type="reset"], summary {
+    cursor: pointer;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@theme {
+  --color-amazon: #131921;
+  --color-amazon-light: #232f3e;
+  --color-amazon-yellow: #febd69;
+  --color-amazon-orange: #f3a847;
+  --color-amazon-blue: #007185;
+  --color-amazon-blue-dark: #004f5f;
+  --color-amazon-river: #146eb4;
+}

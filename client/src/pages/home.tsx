@@ -5,7 +5,7 @@ const Home = () => {
     <Suspense fallback={<div>Loading...</div>}>
       <div className="mx-auto max-w-7xl px-4 py-8">
         <header className="mb-8 rounded-lg bg-amazon p-6 text-white">
-          <h1 className="text-3xl font-bold">Amazon Clone</h1>
+          <h1 className="text-3xl font-bold">Amazon<span className="text-amazon-orange">.</span></h1>
           <p className="mt-2 text-amazon-yellow">Welcome to the store</p>
         </header>
         <section className="rounded-lg bg-white p-6 shadow">
