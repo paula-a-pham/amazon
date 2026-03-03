@@ -17,6 +17,10 @@ export const registerAuth = async (app: FastifyInstance) => {
     jwtVerify: 'refreshVerify',
     jwtSign: 'refreshSign',
     sign: { expiresIn: '7d' },
+    cookie: {
+      cookieName: 'refresh_token',
+      signed: false,
+    },
   });
 
   app.decorate('authenticate', async (request: FastifyRequest, reply: FastifyReply) => {
