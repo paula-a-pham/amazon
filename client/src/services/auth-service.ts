@@ -48,3 +48,31 @@ export const logoutUser = async () => {
   setAccessToken(null);
   return response;
 };
+
+export const forgotPassword = async (data: { email: string }) => {
+  return apiClient<{ message: string }>('/auth/forgot-password', {
+    method: 'POST',
+    body: JSON.stringify(data),
+  });
+};
+
+export const resetPasswordRequest = async (data: { token: string; password: string }) => {
+  return apiClient<{ message: string }>('/auth/reset-password', {
+    method: 'POST',
+    body: JSON.stringify(data),
+  });
+};
+
+export const verifyEmailRequest = async (data: { token: string }) => {
+  return apiClient<{ message: string }>('/auth/verify-email', {
+    method: 'POST',
+    body: JSON.stringify(data),
+  });
+};
+
+export const resendVerification = async (data: { email: string }) => {
+  return apiClient<{ message: string }>('/auth/resend-verification', {
+    method: 'POST',
+    body: JSON.stringify(data),
+  });
+};

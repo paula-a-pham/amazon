@@ -11,6 +11,49 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
+@keyframes toastSlideDown {
+  from { opacity: 0; transform: translateY(-100%); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes toastSlideIn {
+  from { opacity: 0; transform: translateX(100%); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes toastSlideOut {
+  from { opacity: 1; transform: translateX(0); }
+  to { opacity: 0; transform: translateX(100%); }
+}
+
+@keyframes pageFadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.page-transition {
+  animation: pageFadeIn 0.3s ease-out;
+}
+
+.toast-enter {
+  animation: toastSlideDown 0.3s ease-out;
+}
+
+@media (min-width: 640px) {
+  .toast-enter {
+    animation: toastSlideIn 0.3s ease-out;
+  }
+}
+
+.toast-exit {
+  animation: toastSlideOut 0.2s ease-in forwards;
+}
+
 @theme {
   --color-amazon: #131921;
   --color-amazon-light: #232f3e;

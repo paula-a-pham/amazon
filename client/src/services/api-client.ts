@@ -1,6 +1,7 @@
 import type { ApiResponse } from '@amazon-clone/shared/types';
 
 const BASE_URL = '/api/v1';
+const REQUEST_TIMEOUT_MS = 15000;
 
 let accessToken: string | null = null;
 let refreshPromise: Promise<boolean> | null = null;
@@ -16,7 +17,7 @@ const rawFetch = async (
   options: RequestInit = {},
 ): Promise<Response> => {
   const headers: HeadersInit = {
-    'Content-Type': 'application/json',
+    ...(options.body ? { 'Content-Type': 'application/json' } : {}),
     ...options.headers,
   };
 
@@ -24,18 +25,25 @@ const rawFetch = async (
     (headers as Record<string, string>)['Authorization'] = `Bearer ${accessToken}`;
   }
 
-  return fetch(`${BASE_URL}${endpoint}`, {
-    ...options,
-    headers,
-    credentials: 'include',
-  });
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
+
+  try {
+    return await fetch(`${BASE_URL}${endpoint}`, {
+      ...options,
+      headers,
+      credentials: 'include',
+      signal: options.signal ?? controller.signal,
+    });
+  } finally {
+    clearTimeout(timeoutId);
+  }
 };
 
 const attemptRefresh = async (): Promise<boolean> => {
   try {
     const response = await fetch(`${BASE_URL}/auth/refresh`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
       credentials: 'include',
     });
 
@@ -56,7 +64,41 @@ export const apiClient = async <T>(
   endpoint: string,
   options: RequestInit = {},
 ): Promise<ApiResponse<T>> => {
-  const response = await rawFetch(endpoint, options);
+  let response: Response;
+
+  try {
+    response = await rawFetch(endpoint, options);
+  } catch (error: unknown) {
+    if (error instanceof DOMException && error.name === 'AbortError') {
+      return {
+        success: false,
+        error: {
+          code: 'TIMEOUT',
+          message: 'Taking longer than expected. Please try again.',
+        },
+      } as ApiResponse<T>;
+    }
+
+    return {
+      success: false,
+      error: {
+        code: 'NETWORK_ERROR',
+        message: 'Unable to connect. Please check your internet connection and try again.',
+      },
+    } as ApiResponse<T>;
+  }
+
+  if (response.status === 429) {
+    const retryAfter = response.headers.get('retry-after');
+    const retrySeconds = retryAfter ? parseInt(retryAfter, 10) : 60;
+    return {
+      success: false,
+      error: {
+        code: 'RATE_LIMITED',
+        message: `Too many attempts. Please try again in ${retrySeconds} seconds.`,
+      },
+    } as ApiResponse<T>;
+  }
 
   if (response.status === 401 && !endpoint.includes('/auth/refresh') && !endpoint.includes('/auth/login')) {
     // Prevent concurrent refresh attempts

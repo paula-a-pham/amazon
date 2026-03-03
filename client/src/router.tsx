@@ -6,6 +6,9 @@ import { lazy } from 'react';
 const Home = lazy(() => import('@/pages/home'));
 const Login = lazy(() => import('@/pages/login'));
 const Register = lazy(() => import('@/pages/register'));
+const ForgotPassword = lazy(() => import('@/pages/forgot-password'));
+const ResetPassword = lazy(() => import('@/pages/reset-password'));
+const VerifyEmail = lazy(() => import('@/pages/verify-email'));
 
 export const router = createBrowserRouter([
   {
@@ -15,6 +18,18 @@ export const router = createBrowserRouter([
       {
         index: true,
         element: <Home />,
+      },
+      {
+        path: 'verify-email',
+        element: <VerifyEmail />,
+      },
+      {
+        path: 'forgot-password',
+        element: <ForgotPassword />,
+      },
+      {
+        path: 'reset-password',
+        element: <ResetPassword />,
       },
       {
         element: <GuestRoute />,
