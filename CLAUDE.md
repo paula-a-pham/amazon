@@ -122,6 +122,10 @@ amazon/
 - **Responsive design**: Mobile-first approach — design for small screens first, scale up with Tailwind breakpoints (`sm:`, `md:`, `lg:`, `xl:`)
 - **Accessibility**: Use semantic HTML elements (`nav`, `main`, `button`, etc.), add ARIA attributes where needed, ensure full keyboard navigation support, maintain sufficient color contrast ratios
 
+### Design Reference
+
+- Use screenshots in `docs/inspiration/` as the primary visual reference for UI work; when no relevant reference exists, follow established e-commerce UX patterns
+
 ### Backend (Fastify)
 
 - Route handlers are thin — delegate logic to service layer
