@@ -4,6 +4,8 @@ import { registerCors } from '@/plugins/cors.js';
 import { registerAuth } from '@/plugins/auth.js';
 import { registerRateLimit } from '@/plugins/rate-limit.js';
 import { authRoutes } from '@/routes/auth/index.js';
+import { productRoutes } from '@/routes/products/index.js';
+import { categoryRoutes } from '@/routes/categories/index.js';
 
 export const buildApp = async () => {
   const app = Fastify({
@@ -42,6 +44,8 @@ export const buildApp = async () => {
 
   // Routes
   await app.register(authRoutes, { prefix: '/api/v1/auth' });
+  await app.register(productRoutes, { prefix: '/api/v1/products' });
+  await app.register(categoryRoutes, { prefix: '/api/v1/categories' });
 
   return app;
 };
