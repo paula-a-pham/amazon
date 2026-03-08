@@ -6,13 +6,13 @@ export default {
     extend: {
       colors: {
         amazon: {
-          DEFAULT: '#131921',
-          light: '#232f3e',
-          yellow: '#febd69',
-          orange: '#f3a847',
-          blue: '#007185',
-          'blue-dark': '#004f5f',
-          river: '#146eb4',
+          DEFAULT: '#312e81',
+          light: '#4338ca',
+          yellow: '#fbbf24',
+          orange: '#f59e0b',
+          blue: '#4f46e5',
+          'blue-dark': '#3730a3',
+          river: '#6366f1',
         },
       },
     },

@@ -4,6 +4,12 @@
   a, button, [role="button"], [type="submit"], [type="button"], [type="reset"], summary {
     cursor: pointer;
   }
+
+  [type="search"]::-webkit-search-cancel-button,
+  [type="search"]::-webkit-search-decoration {
+    -webkit-appearance: none;
+    appearance: none;
+  }
 }
 
 @keyframes fadeIn {
@@ -58,8 +64,8 @@
   --color-amazon: #131921;
   --color-amazon-light: #232f3e;
   --color-amazon-yellow: #febd69;
-  --color-amazon-orange: #f3a847;
-  --color-amazon-blue: #007185;
-  --color-amazon-blue-dark: #004f5f;
-  --color-amazon-river: #146eb4;
+  --color-amazon-orange: #ff9900;
+  --color-amazon-blue: #ff9900;
+  --color-amazon-blue-dark: #e68a00;
+  --color-amazon-river: #febd69;
 }

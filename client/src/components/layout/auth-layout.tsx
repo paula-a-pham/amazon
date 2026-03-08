@@ -20,7 +20,7 @@ export const AuthLayout = ({ title, subtitle, children, footer, backPath }: Auth
         <div className="mb-6 flex justify-center">
           <AmazonLogo />
         </div>
-        <div className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-gray-900/5 sm:p-8">
+        <div className="rounded-2xl bg-white p-6 ring-1 ring-gray-900/5 sm:p-8">
           {backPath && (
             <div className="mb-4">
               <BackButton fallbackPath={backPath} />

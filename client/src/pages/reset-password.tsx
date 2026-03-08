@@ -9,6 +9,7 @@ import { PasswordInput } from '@/components/ui/password-input';
 import { Button } from '@/components/ui/button';
 import { Alert } from '@/components/ui/alert';
 import { PasswordRules } from '@/components/features/password-rules';
+import { CheckCircle2, KeyRound } from 'lucide-react';
 
 const ResetPassword = () => {
   const formRef = useRef<HTMLFormElement>(null);
@@ -93,6 +94,7 @@ const ResetPassword = () => {
     >
       {success ? (
         <div className="mt-6 space-y-4">
+          <CheckCircle2 className="mx-auto h-10 w-10 text-green-500" />
           <Alert variant="success">
             Your password has been reset successfully.
           </Alert>
@@ -105,6 +107,7 @@ const ResetPassword = () => {
         </div>
       ) : tokenExpired ? (
         <div className="mt-6 space-y-4">
+          <KeyRound className="mx-auto h-10 w-10 text-red-400" />
           <Alert variant="error">
             {serverError?.message ?? 'This reset link has expired or is invalid.'}
           </Alert>

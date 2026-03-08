@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import { X } from 'lucide-react';
 
 type AlertProps = {
   variant?: 'error' | 'success' | 'info';
@@ -22,9 +23,7 @@ export const Alert = ({ variant = 'error', children, onDismiss }: AlertProps) =>
         className="shrink-0 opacity-60 hover:opacity-100 transition-opacity"
         aria-label="Dismiss"
       >
-        <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-        </svg>
+        <X className="h-4 w-4" strokeWidth={2} />
       </button>
     )}
   </div>

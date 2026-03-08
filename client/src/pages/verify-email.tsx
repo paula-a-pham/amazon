@@ -9,6 +9,7 @@ import { Alert } from '@/components/ui/alert';
 import { Spinner } from '@/components/ui/spinner';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { CheckCircle2, XCircle } from 'lucide-react';
 
 const VerifyEmail = () => {
   const [searchParams] = useSearchParams();
@@ -84,6 +85,7 @@ const VerifyEmail = () => {
 
         {status === 'success' && (
           <>
+            <CheckCircle2 className="mx-auto h-10 w-10 text-green-500" />
             <Alert variant="success">
               Your email has been verified successfully!
             </Alert>
@@ -105,6 +107,7 @@ const VerifyEmail = () => {
 
         {status === 'error' && (
           <>
+            <XCircle className="mx-auto h-10 w-10 text-red-400" />
             <Alert variant="error">
               {errorMessage}
             </Alert>

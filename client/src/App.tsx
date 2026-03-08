@@ -5,6 +5,8 @@ import { useAuthSync } from '@/hooks/use-auth-sync';
 import { Spinner } from '@/components/ui/spinner';
 import { ToastContainer } from '@/components/ui/toast';
 import { EmailVerificationBanner } from '@/components/features/email-verification-banner';
+import { Header } from '@/components/layout/header';
+import { Footer } from '@/components/layout/footer';
 
 export const App = () => {
   useAuthInit();
@@ -12,14 +14,15 @@ export const App = () => {
   const { user, isAuthenticated } = useAuth();
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="flex min-h-screen flex-col bg-gray-50">
+      <Header />
       {isAuthenticated && user && !user.emailVerified && (
         <EmailVerificationBanner />
       )}
-      <main>
+      <main className="flex-1">
         <Suspense
           fallback={
-            <div className="flex min-h-screen items-center justify-center bg-white">
+            <div className="flex min-h-[50vh] items-center justify-center bg-white">
               <Spinner size="lg" />
             </div>
           }
@@ -27,6 +30,7 @@ export const App = () => {
           <Outlet />
         </Suspense>
       </main>
+      <Footer />
       <ToastContainer />
     </div>
   );

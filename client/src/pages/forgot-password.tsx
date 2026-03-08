@@ -7,6 +7,7 @@ import { AuthLayout } from '@/components/layout/auth-layout';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Alert } from '@/components/ui/alert';
+import { Mail } from 'lucide-react';
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState('');
@@ -57,6 +58,7 @@ const ForgotPassword = () => {
     >
       {success ? (
         <div className="mt-6 space-y-3">
+          <Mail className="mx-auto h-10 w-10 text-green-500" />
           <Alert variant="success">
             Check your email for a password reset link. It may take a few minutes to arrive.
           </Alert>

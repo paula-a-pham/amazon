@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Mail, X } from 'lucide-react';
 import { useAuthStore } from '@/stores/auth-store';
 import { useResendVerification } from '@/hooks/use-auth';
 import { getSessionItem, setSessionItem } from '@/utils/session-storage';
@@ -40,11 +41,14 @@ export const EmailVerificationBanner = () => {
   return (
     <div className="bg-amber-50 border-b border-amber-200" role="alert">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-2.5">
-        <p className="text-sm text-amber-700">
+        <div className="flex items-center gap-2">
+          <Mail className="h-4 w-4 shrink-0 text-amber-600" strokeWidth={1.5} />
+          <p className="text-sm text-amber-700">
           {resendMutation.data?.success
             ? 'Verification email sent! Check your inbox.'
             : 'Please verify your email address to access all features.'}
-        </p>
+          </p>
+        </div>
         <div className="flex shrink-0 items-center gap-3">
           {!resendMutation.data?.success && (
             <button
@@ -62,9 +66,7 @@ export const EmailVerificationBanner = () => {
             className="shrink-0 text-amber-500 hover:text-amber-700 transition-colors"
             aria-label="Dismiss"
           >
-            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-            </svg>
+            <X className="h-4 w-4" strokeWidth={2} />
           </button>
         </div>
       </div>
