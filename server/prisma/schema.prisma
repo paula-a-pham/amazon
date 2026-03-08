@@ -26,6 +26,7 @@ model User {
   refreshTokens           RefreshToken[]
   passwordResetTokens     PasswordResetToken[]
   emailVerificationTokens EmailVerificationToken[]
+  products                Product[]
 
   @@map("users")
 }
@@ -73,4 +74,64 @@ model EmailVerificationToken {
   @@index([userId])
   @@index([token])
   @@map("email_verification_tokens")
+}
+
+model Category {
+  id        String     @id @default(uuid()) @db.Uuid
+  name      String     @db.VarChar(100)
+  slug      String     @unique @db.VarChar(120)
+  image     String?    @db.VarChar(500)
+  parentId  String?    @map("parent_id") @db.Uuid
+  createdAt DateTime   @default(now()) @map("created_at")
+  updatedAt DateTime   @updatedAt @map("updated_at")
+
+  parent   Category?  @relation("CategoryHierarchy", fields: [parentId], references: [id], onDelete: SetNull)
+  children Category[] @relation("CategoryHierarchy")
+  products Product[]
+
+  @@index([parentId])
+  @@map("categories")
+}
+
+model Product {
+  id             String   @id @default(uuid()) @db.Uuid
+  name           String   @db.VarChar(255)
+  slug           String   @unique @db.VarChar(280)
+  description    String   @db.Text
+  price          Decimal  @db.Decimal(10, 2)
+  compareAtPrice Decimal? @map("compare_at_price") @db.Decimal(10, 2)
+  stock          Int      @default(0)
+  ratingAvg      Decimal  @default(0) @map("rating_avg") @db.Decimal(2, 1)
+  ratingCount    Int      @default(0) @map("rating_count")
+  isActive       Boolean  @default(true) @map("is_active")
+  sellerId       String   @map("seller_id") @db.Uuid
+  categoryId     String   @map("category_id") @db.Uuid
+  createdAt      DateTime @default(now()) @map("created_at")
+  updatedAt      DateTime @updatedAt @map("updated_at")
+
+  seller   User           @relation(fields: [sellerId], references: [id], onDelete: Cascade)
+  category Category       @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  images   ProductImage[]
+
+  @@index([price])
+  @@index([ratingAvg])
+  @@index([createdAt])
+  @@index([sellerId])
+  @@index([categoryId])
+  @@map("products")
+}
+
+model ProductImage {
+  id           String   @id @default(uuid()) @db.Uuid
+  url          String   @db.VarChar(500)
+  alt          String   @db.VarChar(255)
+  displayOrder Int      @default(0) @map("display_order")
+  productId    String   @map("product_id") @db.Uuid
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@index([productId])
+  @@map("product_images")
 }
