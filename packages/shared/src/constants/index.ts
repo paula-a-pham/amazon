@@ -24,3 +24,14 @@ export enum Role {
   SELLER = 'SELLER',
   ADMIN = 'ADMIN',
 }
+
+export const PRODUCTS_PER_PAGE = 20;
+
+export const PRODUCT_SORT_OPTIONS = [
+  { value: 'newest', label: 'Newest Arrivals' },
+  { value: 'price_asc', label: 'Price: Low to High' },
+  { value: 'price_desc', label: 'Price: High to Low' },
+  { value: 'rating', label: 'Avg. Customer Review' },
+  { value: 'name_asc', label: 'Name: A to Z' },
+  { value: 'name_desc', label: 'Name: Z to A' },
+] as const;

@@ -14,3 +14,14 @@ export type ApiErrorResponse = {
 };
 
 export type { User, AuthResponse } from './auth.js';
+export type {
+  ProductImage,
+  Category,
+  CategoryWithChildren,
+  Product,
+  ProductListItem,
+  PaginationMeta,
+  ProductsResponse,
+  CategoriesResponse,
+  CategoryWithProducts,
+} from './product.js';
